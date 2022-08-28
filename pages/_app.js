@@ -7,6 +7,7 @@ const theme = extendTheme({
     brand: "#172b4d",
     skyblue: "#0065ff",
     skydarkblue: "#0747a6",
+    lightblue: "#F9FAFC",
     darkblue: "#eae6ff",
   },
 });

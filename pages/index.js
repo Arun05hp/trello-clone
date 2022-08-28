@@ -58,13 +58,14 @@ export default function Home() {
                 <Link href="/signup">
                   <Button
                     size={"lg"}
-                    width={{ base: "full", md: "auto" }}
+                    width={{ base: "full", md: "220px" }}
                     bg="skyblue"
                     fontSize={"md"}
                     color="white"
                     _hover={{
                       bg: "skydarkblue",
                     }}
+                    px="5"
                   >
                     Sign up - it's fee
                   </Button>
