@@ -16,8 +16,6 @@ export const Form = ({
     ...options,
   });
 
-  console.log(options);
-
   const handleSubmit = async (values) => {
     await onSubmit(values, methods);
     resetOnSubmit && methods.reset();

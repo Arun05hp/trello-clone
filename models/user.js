@@ -1,7 +1,8 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   name: { type: String, minlength: 2, maxlength: 50 },
   email: {
     type: String,
@@ -18,15 +19,14 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
-
 function validateUser(user) {
-  const schema = {
+  const schema = Joi.object({
     email: Joi.string().min(6).max(255).required().email(),
     password: Joi.string().min(5).max(32).required(),
-  };
-  return Joi.validate(user, schema);
+  });
+  return schema.validate(user);
 }
 
-exports.User = User;
-exports.validate = validateUser;
+module.exports.User =
+  mongoose.models.User || mongoose.model("User", userSchema);
+module.exports.validate = validateUser;

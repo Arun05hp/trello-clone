@@ -1,22 +1,44 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
-
+import { useToast } from "@chakra-ui/react";
 import * as yup from "yup";
 import { InputField } from "../components/form/Fields";
 import { Form } from "../components/form/form";
 import AuthLayout from "../components/layouts/AuthLayout";
+import * as userService from "../services/userService";
 
 const schema = yup.object().shape({
   email: yup.string().email().required().label("Email"),
-  password: yup.string().min(8).max(32).required().label("Password"),
+  password: yup.string().min(6).max(32).required().label("Password"),
   passwordConfirmation: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
-const signup = () => {
-  function onSubmit(values) {
-    console.log(values);
+const Signup = () => {
+  const toast = useToast();
+
+  async function onSubmit(values) {
+    try {
+      const response = await userService.register(values);
+      toast({
+        title: response.data,
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        toast({
+          title: ex.response?.data ?? "Something Went Wrong!",
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    }
   }
   return (
     <AuthLayout isRegisterForm>
@@ -60,4 +82,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
