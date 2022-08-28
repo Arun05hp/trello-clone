@@ -1,27 +1,16 @@
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Flex,
-  Text,
-  IconButton,
   Button,
-  Stack,
   Collapse,
   Divider,
-  Icon,
+  Flex,
+  IconButton,
   Image,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
+  Stack,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -81,7 +70,7 @@ const AllLinks = () => {
           bg="transparent"
           border={{ base: "1px solid #0065ff", md: "none" }}
           borderRadius={"0"}
-          color="#172b4d"
+          color="brand"
           p={"5"}
           _hover={{
             bg: "transparent",
@@ -98,10 +87,10 @@ const AllLinks = () => {
           fontSize={"lg"}
           fontWeight={500}
           color={"white"}
-          bg={"#0065ff"}
+          bg={"skyblue"}
           p={"5"}
           _hover={{
-            bg: "#0747a6",
+            bg: "skydarkblue",
           }}
         >
           Get Trello for free
