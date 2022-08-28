@@ -23,14 +23,14 @@ export default function Home() {
       <Box bgGradient="linear(darkblue, white)" py="4">
         <Container maxW={"6xl"}>
           <Stack
-            align={"center"}
+            align={{ base: "center", md: "stretch" }}
             spacing={{ base: 8, md: 28 }}
-            py={{ base: 5, md: 5 }}
             direction={{ base: "column-reverse", md: "row" }}
           >
             <Stack
               flex={1}
               spacing={5}
+              py={{ base: 0, md: 28 }}
               textAlign={{ base: "center", md: "left" }}
             >
               <Heading
@@ -75,9 +75,8 @@ export default function Home() {
             <Box
               flex={0.5}
               boxSize={{ base: "sm", md: "xs" }}
-              ml="auto"
-              py="8"
-              height={"400px"}
+              ml={"auto"}
+              py="12"
             >
               <Image src={"/images/hero.png"} align={"center"} alt="hero" />
             </Box>
