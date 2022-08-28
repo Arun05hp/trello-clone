@@ -20,11 +20,11 @@ export const InputField = ({
       id={id}
       label={label}
     >
-      {(field) => {
+      {(fieldProps) => {
         const isTextarea = as === "textarea";
         return (
           <Input
-            {...field}
+            {...fieldProps}
             {...props}
             as={isTextarea ? Textarea : as}
             id={id}

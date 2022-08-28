@@ -12,9 +12,11 @@ export const Form = ({
 }) => {
   const methods = useForm({
     resolver: schema ? yupResolver(schema) : undefined,
-    reValidateMode: "onChange",
+    mode: "all",
     ...options,
   });
+
+  console.log(options);
 
   const handleSubmit = async (values) => {
     await onSubmit(values, methods);

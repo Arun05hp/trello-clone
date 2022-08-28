@@ -18,7 +18,7 @@ export const FieldControl = ({
       )}
 
       {children}
-      <FormErrorMessage lineHeight="1rem">{"asasd"}</FormErrorMessage>
+      <FormErrorMessage lineHeight="1rem">{errorText}</FormErrorMessage>
     </FormControl>
   );
 };

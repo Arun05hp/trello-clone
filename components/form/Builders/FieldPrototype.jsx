@@ -9,20 +9,22 @@ export const FieldPrototype = ({
   children,
   ...props
 }) => {
-  const { control, errors } = useFormContext();
-  const isInvalid = errors && errors[name];
-  console.log(control, errors);
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+  const isInvalid = errors && errors[name]?.message;
+
   return (
     <FieldControl
       errorText={errors && errors[name]?.message}
       isInvalid={isInvalid}
-      name={name}
       isRequired={isRequired}
       {...props}
     >
       <Controller
-        name={name}
         control={control}
+        name={name}
         render={({ field }) => {
           return children(field);
         }}
