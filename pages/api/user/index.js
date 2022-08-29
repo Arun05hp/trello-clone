@@ -1,3 +1,5 @@
+const dbConnect = require("../../../lib/mongodb");
+const bcrypt = require("bcrypt");
 const { User, validate } = require("../../../models/user");
 
 async function handler(req, res) {
@@ -6,6 +8,7 @@ async function handler(req, res) {
     const { email, password } = req.body;
     const { error } = validate({ email, password });
     if (error) return res.status(400).send(error.details[0].message);
+
     let user = await User.findOne({ email: req.body.email });
     if (user) return res.status(400).send("User already registered.");
 

@@ -15,14 +15,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minlength: 6,
-    maxlength: 32,
+    maxlength: 1024,
   },
 });
 
 function validateUser(user) {
   const schema = Joi.object({
     email: Joi.string().min(6).max(255).required().email(),
-    password: Joi.string().min(5).max(32).required(),
+    password: Joi.string().min(5).max(42).required(),
   });
   return schema.validate(user);
 }
