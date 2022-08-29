@@ -1,7 +1,8 @@
-const dbConnect = require("../../../lib/mongodb");
+import connectDb from "../../../lib/connectDb";
 const bcrypt = require("bcrypt");
 const { User, validate } = require("../../../models/user");
 
+connectDb();
 async function handler(req, res) {
   try {
     if (req.method !== "POST") return;
