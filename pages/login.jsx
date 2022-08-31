@@ -19,7 +19,6 @@ const Login = () => {
   const [apiLoading, setApiLoading] = useState(false);
 
   async function handleSubmit(values) {
-    console.log("values", values);
     setApiLoading(true);
     try {
       const result = await signIn("credentials", {

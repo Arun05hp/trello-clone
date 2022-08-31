@@ -28,7 +28,6 @@ export default NextAuth({
           user.password
         );
         if (!validPassword) throw new Error("Invalid email or password.");
-        console.log(user);
         return user;
       },
     }),
