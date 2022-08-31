@@ -14,8 +14,7 @@ async function handler(req, res) {
     if (user) return res.status(400).send("User already registered.");
 
     user = new User({ email, password });
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
+    user.password = await user.hashPassword(10, user.password);
     await user.save();
     return res.status(200).send("User Registered Successfully!");
   } catch (error) {

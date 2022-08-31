@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import * as yup from "yup";
 import { InputField } from "../components/form/Fields";
@@ -17,10 +17,14 @@ const schema = yup.object().shape({
 
 const Signup = () => {
   const toast = useToast();
+  const [apiLoading, setApiLoading] = useState(false);
 
   async function onSubmit(values) {
+    setApiLoading(true);
     try {
       const response = await userService.register(values);
+
+      setApiLoading(false);
       toast({
         title: response.data,
         status: "success",
@@ -29,6 +33,7 @@ const Signup = () => {
         isClosable: true,
       });
     } catch (ex) {
+      setApiLoading(false);
       if (ex.response && ex.response.status === 400) {
         toast({
           title: ex.response?.data ?? "Something Went Wrong!",
@@ -74,6 +79,7 @@ const Signup = () => {
           type="submit"
           colorScheme="green"
           w="full"
+          isLoading={apiLoading}
         >
           Register
         </Button>

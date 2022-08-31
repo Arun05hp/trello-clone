@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
   name: { type: String, minlength: 2, maxlength: 50 },
@@ -18,6 +19,15 @@ const userSchema = new Schema({
     maxlength: 1024,
   },
 });
+
+userSchema.methods.verifyPassword = async function (password, hashPassword) {
+  return await bcrypt.compare(password, hashPassword);
+};
+
+userSchema.methods.hashPassword = async function (round, password) {
+  const salt = await bcrypt.genSalt(round);
+  return await bcrypt.hash(password, salt);
+};
 
 function validateUser(user) {
   const schema = Joi.object({
